@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="mina-core-2.0.7.jar" sourcepath="C:/Users/Administrator/.m2/repository/org/apache/mina/mina-core/2.0.7/mina-core-2.0.7-sources.jar"/>
+	<classpathentry kind="lib" path="mina-example-2.0.7.jar"/>
+	<classpathentry kind="lib" path="mina-filter-compression-2.0.7.jar"/>
+	<classpathentry kind="lib" path="mina-integration-beans-2.0.7.jar"/>
+	<classpathentry kind="lib" path="mina-integration-jmx-2.0.7.jar"/>
+	<classpathentry kind="lib" path="mina-integration-ognl-2.0.7.jar"/>
+	<classpathentry kind="lib" path="mina-integration-xbean-2.0.7.jar"/>
+	<classpathentry kind="lib" path="mina-statemachine-2.0.7.jar"/>
+	<classpathentry kind="lib" path="mina-transport-apr-2.0.7.jar"/>
+	<classpathentry kind="lib" path="slf4j-api-1.7.12.jar"/>
+	<classpathentry kind="lib" path="slf4j-nop-1.7.12.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
