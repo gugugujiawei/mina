@@ -35,18 +35,20 @@ public class TimeClientHandler extends IoHandlerAdapter{
 		//ftputil.setFileSave("F:\\fileRes\\", "minaTest.txt", "/2015/temp/");
 		
 		//FtpClientUtil ftputil = FtpClientUtil.getInstance();
-		Log.d(TAG,(recObj.getEventStr().equalsIgnoreCase(Constant.RECORD))+"");
+		//Log.d(TAG,(recObj.getEventStr().equalsIgnoreCase(Constant.RECORD))+"");
 		if(recObj.getEventStr().equalsIgnoreCase(Constant.RECORD)){
 			FtpClientUtil ftputil = new FtpClientUtil(false);
+			//注册回调函数
+			Callback mCallback = new ClientCallback(session,recObj.getSerialNum());
+			ftputil.registCallback(mCallback);
+			
+			
 			HashMap<String,String> queElement = new HashMap<String,String>();
 			queElement.put("1",recObj.getLocalAddr());
 			queElement.put("2",recObj.getFileName());
 			queElement.put("3",recObj.getRemoteAddr());
 			ftputil.setQueElement(queElement);
-			
-			//注册回调函数
-			Callback mCallback = new ClientCallback(session,recObj.getSerialNum());
-			ftputil.registCallback(mCallback);
+	
 			
 			/**
 			 * 计算文件大小并返回

@@ -10,8 +10,6 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -42,13 +40,13 @@ public class FtpClientUtil{
 	private String password;  
 	          
 	//文件名
-	private Callback mCallback;
+	private Callback mCallback = null;
 	
 	//普通队列，接收来自服务器的传送文件消息
-	public static Queue<Map> queue = new LinkedList<Map>();
+	public static Queue<Map> queue = new LinkedList<Map>();	
 	
 	//线程队列，每次只能有5个进入，如果BlockQueue没有空间,则调用此方法的线程被阻断
-	public static BlockingQueue<Runnable> threadQueue = new ArrayBlockingQueue<Runnable>(5); 
+	public static BlockingQueue<Runnable> threadQueue = new ArrayBlockingQueue<Runnable>(Constant.threadChannel); 
 	
 	//线程池，5个线程（信道）
 	/**
@@ -60,10 +58,8 @@ public class FtpClientUtil{
      * workQueue： 线程池所使用的缓冲队列
      * handler： 线程池对拒绝任务的处理策略
      */
-	public static ThreadPoolExecutor fixedThreadPool = new ThreadPoolExecutor(5, 5, 1, TimeUnit.HOURS, threadQueue, new ThreadPoolExecutor.CallerRunsPolicy());;
+	public static ThreadPoolExecutor fixedThreadPool = new ThreadPoolExecutor(Constant.threadChannel, Constant.threadChannel, 1, TimeUnit.HOURS, threadQueue, new ThreadPoolExecutor.CallerRunsPolicy());;
 	
-	//信道个数
-	static int threadNum = 10;  
 	
 	//线程对象Runnable
     Runnable run = new Runnable() {  
@@ -96,10 +92,9 @@ public class FtpClientUtil{
 		    try{  
 		    	Log.d(TAG,"Runable()");
 		        buffIn = new BufferedInputStream(new FileInputStream(localDir + fileName));  
-		        boolean result = ftpClient.storeFile(remoteDir + fileName, buffIn); 		        
+		        boolean result = ftpClient.storeFile(remoteDir + fileName, buffIn); 
 		        mCallback.callback(result);
-		        close();
-		        
+		        close();		        
 		    }catch(Exception e){  
 		        e.printStackTrace();  
 		        close();
@@ -125,8 +120,8 @@ public class FtpClientUtil{
 	 */ 
 	
 	public FtpClientUtil(boolean is_zhTimeZone){		
-		this.hostName = Constant.hostName;  
-		this.port = Constant.port;
+		this.hostName = Constant.ftpHostName;  
+		this.port = Constant.ftpPort;
 	    this.userName = Constant.userName;  
 	    this.password = Constant.password;       
 	    	          	   

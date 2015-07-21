@@ -5,6 +5,11 @@ import org.apache.mina.filter.codec.textline.LineDelimiter;
 public class Constant {
 	
 	/**
+	 * Client UID
+	 */
+	public static String UID = "72025"; 
+	
+	/**
 	 * 流水号
 	 * 规则：每次取得流水号需+1
 	 */
@@ -33,7 +38,7 @@ public class Constant {
 	 * MINA server信息
 	 */
 	public static String serverName = "127.0.0.1";
-	//public static String serverName = "172.16.23.41";
+	//public static String serverName = "172.16.23.28";
 	public static int serverPort = 9702;
 	
 	/**
@@ -41,14 +46,19 @@ public class Constant {
 	 */
 //	public static String hostName = "172.16.23.28";
 //	public static int port = 9703;
-//	public static String userName = "admin";
-//	public static String password = "admin";
 	
-	public static String headAddr = "F:\\fileRes\\";
+	public static String ftpHostName = "127.0.0.1";
+	public static int ftpPort = 21;
 	
-	public static String hostName = "127.0.0.1";
-	public static int port = 21;
 	public static String userName = "admin";
 	public static String password = "admin";
+	
+	public static int threadChannel = 5;
+	
+	/**
+	 * 本地文件路径
+	 */
+	public static String headAddr = "F:\\fileRes\\";
+	
 	
 }
